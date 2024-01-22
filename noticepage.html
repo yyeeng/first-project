@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${posting.title}">Default Title</title>
+</head>
+<body>
+<div>
+    <h1 th:text="${posting.title}">Default Title</h1>
+    <p>작성자: <span th:text="${posting.author}">Unknown</span></p>
+    <p>내용: <span th:text="${posting.content}">No content</span></p>
+    <!-- 사진, 동영상, 링크 등은 해당 속성을 사용해 표시 -->
+    <p>사진: <img th:src="${posting.image}" alt="No image available"></p>
+    <p>동영상: <iframe th:src="${posting.video}" allowfullscreen="true"></iframe></p>
+    <p>링크: <a th:href="${posting.link}" target="_blank" th:text="${posting.link}">No link available</a></p>
+    <p>작성 시간: <span th:text="${#temporals.format(posting.created_At, 'yyyy-MM-dd HH:mm:ss')}">Unknown</span></p>
+
+    <a href="@{/notice/edit/{id}(id=${posting.id})}"><button onclick="enableEdit()">수정하기</button></a>
+</div>
+
+<a th:href="@{/notice}"><button onclick="enableEdit()">목록으로 돌아가기</button></a>
+
+</body>
+</html>
